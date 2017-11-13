@@ -12,6 +12,9 @@
 		23D610C41FB974B900D90E46 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 23D610C21FB974B900D90E46 /* Main.storyboard */; };
 		23D610C61FB974B900D90E46 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 23D610C51FB974B900D90E46 /* Assets.xcassets */; };
 		23D610C91FB974B900D90E46 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 23D610C71FB974B900D90E46 /* LaunchScreen.storyboard */; };
+		23D610D31FB9758A00D90E46 /* PageCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23D610D21FB9758A00D90E46 /* PageCollectionViewController.swift */; };
+		23D610D51FB975DC00D90E46 /* PageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23D610D41FB975DC00D90E46 /* PageCollectionViewCell.swift */; };
+		23D610D71FB9871900D90E46 /* Page.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23D610D61FB9871900D90E46 /* Page.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +25,9 @@
 		23D610C51FB974B900D90E46 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		23D610C81FB974B900D90E46 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		23D610CA1FB974B900D90E46 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		23D610D21FB9758A00D90E46 /* PageCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageCollectionViewController.swift; sourceTree = "<group>"; };
+		23D610D41FB975DC00D90E46 /* PageCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageCollectionViewCell.swift; sourceTree = "<group>"; };
+		23D610D61FB9871900D90E46 /* Page.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Page.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +62,9 @@
 			children = (
 				23D610BE1FB974B900D90E46 /* AppDelegate.swift */,
 				23D610C01FB974B900D90E46 /* ViewController.swift */,
+				23D610D41FB975DC00D90E46 /* PageCollectionViewCell.swift */,
+				23D610D21FB9758A00D90E46 /* PageCollectionViewController.swift */,
+				23D610D61FB9871900D90E46 /* Page.swift */,
 				23D610C21FB974B900D90E46 /* Main.storyboard */,
 				23D610C51FB974B900D90E46 /* Assets.xcassets */,
 				23D610C71FB974B900D90E46 /* LaunchScreen.storyboard */,
@@ -138,6 +147,9 @@
 			files = (
 				23D610C11FB974B900D90E46 /* ViewController.swift in Sources */,
 				23D610BF1FB974B900D90E46 /* AppDelegate.swift in Sources */,
+				23D610D31FB9758A00D90E46 /* PageCollectionViewController.swift in Sources */,
+				23D610D51FB975DC00D90E46 /* PageCollectionViewCell.swift in Sources */,
+				23D610D71FB9871900D90E46 /* Page.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -277,6 +289,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = B8SW848K42;
 				INFOPLIST_FILE = AutoLayoutPractice/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.DaiTranDev.AutoLayoutPractice;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -292,6 +305,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = B8SW848K42;
 				INFOPLIST_FILE = AutoLayoutPractice/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.DaiTranDev.AutoLayoutPractice;
 				PRODUCT_NAME = "$(TARGET_NAME)";

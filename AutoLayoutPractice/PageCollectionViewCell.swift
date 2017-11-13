@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  PageCollectionViewCell.swift
 //  AutoLayoutPractice
 //
 //  Created by Dai Tran on 11/13/17.
@@ -8,12 +8,8 @@
 
 import UIKit
 
-extension UIColor {
-    static var mainPink = UIColor(red: 232/255, green: 68/255, blue: 133/255, alpha: 1)
-}
-
-class ViewController: UIViewController {
-
+class PageCollectionViewCell : UICollectionViewCell {
+    
     let bearImageView: UIImageView = {
         let imageView = UIImageView(image: #imageLiteral(resourceName: "bear_first"))
         imageView.translatesAutoresizingMaskIntoConstraints = false
@@ -62,28 +58,34 @@ class ViewController: UIViewController {
         return pageControl
     }()
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
-        setupLayout()
-        setupBottomControl()
+    var page: Page? {
+        didSet {
+            guard let page = page else { return }
+            
+            bearImageView.image = UIImage(named: page.imageName)
+            let attributeText = NSMutableAttributedString(string: page.title, attributes: [NSAttributedStringKey.font: UIFont.boldSystemFont(ofSize: 18)])
+            attributeText.append(NSMutableAttributedString(string: "\n\n\n\(page.description)", attributes: [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 12)]))
+            
+            descriptionTextView.attributedText = attributeText
+            descriptionTextView.textAlignment = .center
+        }
     }
     
     func setupLayout() {
         let topImageContainerView = UIView()
         topImageContainerView.translatesAutoresizingMaskIntoConstraints = false
         
-        view.addSubview(topImageContainerView)
+        addSubview(topImageContainerView)
         topImageContainerView.addSubview(bearImageView)
         
-        view.addSubview(descriptionTextView)
-
+        addSubview(descriptionTextView)
+        
         if #available(iOS 11, *) {
             NSLayoutConstraint.activate([
-                topImageContainerView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-                topImageContainerView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
-                topImageContainerView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
-                topImageContainerView.heightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.heightAnchor, multiplier: 0.5)
+                topImageContainerView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor),
+                topImageContainerView.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor),
+                topImageContainerView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor),
+                topImageContainerView.heightAnchor.constraint(equalTo: safeAreaLayoutGuide.heightAnchor, multiplier: 0.5)
                 ])
             
             NSLayoutConstraint.activate([
@@ -94,16 +96,16 @@ class ViewController: UIViewController {
             
             NSLayoutConstraint.activate([
                 descriptionTextView.topAnchor.constraint(equalTo: topImageContainerView.safeAreaLayoutGuide.bottomAnchor),
-                descriptionTextView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 24),
-                descriptionTextView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -24),
-                descriptionTextView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
+                descriptionTextView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 24),
+                descriptionTextView.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -24),
+                descriptionTextView.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor)
                 ])
         } else {
             NSLayoutConstraint.activate([
-                topImageContainerView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-                topImageContainerView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-                topImageContainerView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-                topImageContainerView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: 0.5)
+                topImageContainerView.centerXAnchor.constraint(equalTo: centerXAnchor),
+                topImageContainerView.trailingAnchor.constraint(equalTo: trailingAnchor),
+                topImageContainerView.leadingAnchor.constraint(equalTo: leadingAnchor),
+                topImageContainerView.heightAnchor.constraint(equalTo: heightAnchor, multiplier: 0.5)
                 ])
             
             NSLayoutConstraint.activate([
@@ -114,38 +116,19 @@ class ViewController: UIViewController {
             
             NSLayoutConstraint.activate([
                 descriptionTextView.centerXAnchor.constraint(equalTo: topImageContainerView.centerXAnchor),
-                descriptionTextView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-                descriptionTextView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-                descriptionTextView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+                descriptionTextView.leadingAnchor.constraint(equalTo: leadingAnchor),
+                descriptionTextView.trailingAnchor.constraint(equalTo: trailingAnchor),
+                descriptionTextView.bottomAnchor.constraint(equalTo: bottomAnchor)
                 ])
         }
     }
     
-    func setupBottomControl() {
-        let bottomStackControl = UIStackView(arrangedSubviews: [prevButton, pageControl, nextButton])
-        bottomStackControl.translatesAutoresizingMaskIntoConstraints = false
-        
-        view.addSubview(bottomStackControl)
-        
-        if #available(iOS 11, *) {
-            bottomStackControl.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor).isActive = true
-            bottomStackControl.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor).isActive = true
-            bottomStackControl.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor).isActive = true
-            bottomStackControl.heightAnchor.constraint(equalToConstant: 50).isActive = true
-        } else {
-            bottomStackControl.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
-            bottomStackControl.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
-            bottomStackControl.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
-            bottomStackControl.heightAnchor.constraint(equalToConstant: 50).isActive = true
-        }
-        
-        
-        bottomStackControl.distribution = .fillEqually
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        setupLayout()
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
 }
-
